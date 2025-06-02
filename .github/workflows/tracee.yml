@@ -25,7 +25,7 @@ jobs:
       - name: Save logs to a file
         run: |
           docker logs tracee > output.log || true
-          
+
       - name: Wait briefly for Tracee to initialize
         run: sleep 5
 
@@ -37,7 +37,7 @@ jobs:
         run: lsmod
         
       - name: Wait for Tracee to capture events
-        run: sleep 5
+        run: sleep 45
 
       - name: Stop Tracee
         run: docker stop tracee
