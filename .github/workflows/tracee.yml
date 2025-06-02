@@ -40,8 +40,8 @@ jobs:
       - name: List Tracee logs
         run: ls -l tracee-logs
 
-      - name: Upload Tracee logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: tracee-ebpf-logs
-          path: tracee-logs
+    #   - name: Upload Tracee logs
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: tracee-ebpf-logs
+    #       path: tracee-logs
