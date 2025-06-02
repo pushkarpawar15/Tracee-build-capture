@@ -16,16 +16,11 @@ jobs:
 
       - name: Start Tracee
         run: |
-          docker run -d --name tracee \
-            --privileged \
-            --pid=host \
+            docker run --name tracee -it --rm \
+            --pid=host --cgroupns=host --privileged \
             -v /etc/os-release:/etc/os-release-host:ro \
-            -v /lib/modules:/lib/modules:ro \
-            -v /usr/src:/usr/src:ro \
-            -v ${{ github.workspace }}/tracee-logs:/tmp/tracee \
-            aquasec/tracee:latest \
-            --output json --output-dir /tmp/tracee
-
+            -v /var/run:/var/run:ro \
+            aquasec/tracee:latest > output.log
       - name: Wait briefly for Tracee to initialize
         run: sleep 5
 
@@ -43,15 +38,15 @@ jobs:
         run: docker stop tracee
     
       - name: List Tracee logs
-        run: ls -l tracee-logs
+        run: ls -l 
 
       - name: Print Tracee logs
         run: |
           echo "Tracee logs:"
-          cat tracee-logs/*.json
+          cat output.log
 
       - name: Upload Tracee logs
         uses: actions/upload-artifact@v4
         with:
           name: tracee-ebpf-logs
-          path: tracee-logs
+          path: output.log
