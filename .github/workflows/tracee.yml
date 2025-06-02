@@ -43,6 +43,11 @@ jobs:
       - name: List Tracee logs
         run: ls -l tracee-logs
 
+      - name: Print Tracee logs
+        run: |
+          echo "Tracee logs:"
+          cat tracee-logs/*.json
+          
       - name: Upload Tracee logs
         uses: actions/upload-artifact@v4
         with:
