@@ -22,9 +22,7 @@ jobs:
             -v /var/run:/var/run:ro \
             aquasec/tracee:latest
     
-      - name: Save logs to a file
-        run: |
-          docker logs tracee > output.log || true
+
 
       - name: Wait briefly for Tracee to initialize
         run: sleep 5
@@ -37,7 +35,11 @@ jobs:
         run: lsmod
         
       - name: Wait for Tracee to capture events
-        run: sleep 45
+        run: sleep 5
+
+      - name: Save logs to a file
+        run: |
+          docker logs tracee > output.log 
 
       - name: Stop Tracee
         run: docker stop tracee
