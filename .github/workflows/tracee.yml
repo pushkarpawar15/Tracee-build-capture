@@ -16,7 +16,7 @@ jobs:
 
       - name: Start Tracee
         run: |
-            docker run --name tracee --rm -d\
+            docker run --name tracee --rm -d \
             --pid=host --cgroupns=host --privileged \
             -v /etc/os-release:/etc/os-release-host:ro \
             -v /var/run:/var/run:ro \
