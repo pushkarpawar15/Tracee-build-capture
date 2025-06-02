@@ -32,7 +32,7 @@ jobs:
           make
           ./hello
       - name: malicious command
-        run: lsmod
+        run: strace -o /dev/null ls
         
       - name: Wait for Tracee to capture events
         run: sleep 5
