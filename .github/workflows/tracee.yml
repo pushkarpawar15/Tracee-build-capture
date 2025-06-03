@@ -37,8 +37,6 @@ jobs:
       - name: Stop Tracee
         run: |
           docker stop tracee
-          kill $(cat tracee_log.pid) || true
-          rm -f tracee_log.pid nohup.out
     
       - name: List Tracee logs
         run: ls -l 
