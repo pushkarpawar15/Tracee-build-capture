@@ -27,8 +27,8 @@ jobs:
 
       - name: Save logs to a file
         run: |
-          docker logs tracee > output.log 
-          
+          nohup docker logs -f tracee_container >> tracee_output.log 2>&1 &
+
       - name: malicious command
         run: strace -o /dev/null ls
         
@@ -38,7 +38,10 @@ jobs:
       
 
       - name: Stop Tracee
-        run: docker stop tracee
+        run: |
+          docker stop tracee
+          kill $(cat tracee_log.pid) || true
+          rm -f tracee_log.pid nohup.out
     
       - name: List Tracee logs
         run: ls -l 
