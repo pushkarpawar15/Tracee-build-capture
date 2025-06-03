@@ -1,0 +1,18 @@
+name: Run Tracee via Docker
+description: A custom action to run Aqua Security's Tracee using Docker
+runs:
+  using: "composite"
+  steps:
+    - name: Pull Tracee Docker image
+      shell: bash
+      run: |
+        docker pull aquasec/tracee:latest
+
+    - name: Run Tracee
+      shell: bash
+      run: |
+        docker run --name tracee --rm -d \
+            --pid=host --cgroupns=host --privileged \
+            -v /etc/os-release:/etc/os-release-host:ro \
+            -v /var/run:/var/run:ro \
+            aquasec/tracee:latest
