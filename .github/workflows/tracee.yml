@@ -24,15 +24,18 @@ jobs:
         run: |
           make
           ./hello
+
+      - name: Save logs to a file
+        run: |
+          docker logs tracee > output.log 
+          
       - name: malicious command
         run: strace -o /dev/null ls
         
       - name: Wait for Tracee to capture events
         run: sleep 5
 
-      - name: Save logs to a file
-        run: |
-          docker logs tracee > output.log 
+      
 
       - name: Stop Tracee
         run: docker stop tracee
