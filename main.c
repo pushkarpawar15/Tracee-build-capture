@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <stdio.h>
-
+#include <sys/wait.h>
 int main() {
     pid_t pid = fork(); // or use clone() with appropriate args
     if (pid == 0) {
