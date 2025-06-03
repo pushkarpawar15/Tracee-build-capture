@@ -15,9 +15,7 @@ jobs:
         run: mkdir -p tracee-logs
 
       - name: Start Tracee
-        uses: ./tracee-action
-    
-
+        uses: pushkarpawar15/tracee-docker-action@v1
 
       - name: Wait briefly for Tracee to initialize
         run: sleep 5
