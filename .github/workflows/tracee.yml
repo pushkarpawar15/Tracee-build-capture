@@ -29,6 +29,10 @@ jobs:
       - name: malicious command
         run: strace -o /dev/null ls
         
+      - name: exec stscall
+        run: |
+          echo "Executing a command to trigger Tracee"
+
       - name: Wait for Tracee to capture events
         run: sleep 5
 
