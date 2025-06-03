@@ -15,7 +15,7 @@ jobs:
         run: mkdir -p tracee-logs
 
       - name: Start Tracee
-        uses: pushkarpawar15/tracee-docker-action@v2
+        uses: pushkarpawar15/tracee-docker-action@v1
 
       - name: Wait briefly for Tracee to initialize
         run: sleep 5
@@ -46,10 +46,10 @@ jobs:
       - name: Print Tracee logs
         run: |
           echo "Tracee logs:"
-          cat output.log
+          cat tracee.log
 
       - name: Upload Tracee logs
         uses: actions/upload-artifact@v4
         with:
           name: tracee-ebpf-logs
-          path: output.log
+          path: tracee.log
