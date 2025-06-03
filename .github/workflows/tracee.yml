@@ -27,7 +27,8 @@ jobs:
 
       - name: Save logs to a file
         run: |
-          nohup docker logs -f tracee_container >> tracee_output.log 2>&1 &
+          nohup docker logs -f tracee >> output.log 2>&1 &
+          echo $! > tracee_log.pid
 
       - name: malicious command
         run: strace -o /dev/null ls
